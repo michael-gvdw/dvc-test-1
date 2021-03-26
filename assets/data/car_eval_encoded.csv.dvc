@@ -1,0 +1,4 @@
+outs:
+- md5: 21182ba4f72f63c0635c5df63cb408c0
+  size: 29432
+  path: car_eval_encoded.csv
