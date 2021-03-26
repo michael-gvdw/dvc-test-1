@@ -21,23 +21,9 @@ print(df.head())
 print()
 
 # encode categorical values
-encoding_features = ['buying', 'maint', 'lug_boot', 'safety', 'class/state']
 label_encoder = LabelEncoder()
-for feature in encoding_features:
-    df[feature] = label_encoder.fit_transform(np.array(df[feature]))
+for column, _ in df.iteritems():
+    df[column] = label_encoder.fit_transform(np.array(df[column]))
 print(df.head())
 
 df.to_csv('./assets/data/car_eval_encoded.csv', index=False, mode='w')
-
-
-
-
-
-
-
-
-
-
-
-
-
