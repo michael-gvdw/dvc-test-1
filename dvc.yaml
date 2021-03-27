@@ -1,0 +1,29 @@
+stages:
+  load:
+    cmd: python create_dataset.py
+    deps:
+    - create_dataset.py
+    outs:
+    - ./assets/pipeline/data/
+  featurize:
+    cmd: python create_features.py
+    deps:
+    - ./assets/pipeline/data
+    - create_features.py
+    outs:
+    - ./assets/pipeline/features
+  train:
+    cmd: python create_model.py
+    deps:
+    - ./assets/pipeline/features/
+    - create_model.py
+    outs:
+    - ./assets/pipeline/models/
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+    - ./assets/pipeline/features/
+    - ./assets/pipeline/models/
+    - evaluate_model.py
+    outs:
+    - ./assets/pipeline/metrics/

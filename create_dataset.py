@@ -21,8 +21,10 @@ df.to_csv(params['to'], index=False, mode='w')
 print(df.shape)
 print(df.head())
 
+print(df.columns)
 # add column names
 df.columns = params['column_names']
+print(df.columns)
 
 # show the columns
 print(df.head())

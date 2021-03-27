@@ -1,0 +1,62 @@
+schema: '2.0'
+stages:
+  load:
+    cmd: python create_dataset.py
+    deps:
+    - path: create_dataset.py
+      md5: 03bb6935b52d636311b1d648771bcabb
+      size: 733
+    outs:
+    - path: ./assets/pipeline/data/
+      md5: 781173d038699b697a41d156dbe198ec.dir
+      size: 53651
+      nfiles: 1
+  featurize:
+    cmd: python create_features.py
+    deps:
+    - path: ./assets/pipeline/data
+      md5: f03e49dabeb76d642af2652fd53e2fdf.dir
+      size: 79627
+      nfiles: 2
+    - path: create_features.py
+      md5: 9ae88ebcc7d068f370d90a99d359b157
+      size: 1682
+    outs:
+    - path: ./assets/pipeline/features
+      md5: 3078b072c283b4b958864728e7404e26.dir
+      size: 27762
+      nfiles: 4
+  train:
+    cmd: python create_model.py
+    deps:
+    - path: ./assets/pipeline/features/
+      md5: 3078b072c283b4b958864728e7404e26.dir
+      size: 27762
+      nfiles: 4
+    - path: create_model.py
+      md5: 559caec4a2ceabad6dad6c363598a94b
+      size: 943
+    outs:
+    - path: ./assets/pipeline/models/
+      md5: 6916f619f92583a44043de2c0f7328d8.dir
+      size: 53458
+      nfiles: 1
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+    - path: ./assets/pipeline/features/
+      md5: 3078b072c283b4b958864728e7404e26.dir
+      size: 27762
+      nfiles: 4
+    - path: ./assets/pipeline/models/
+      md5: 6916f619f92583a44043de2c0f7328d8.dir
+      size: 53458
+      nfiles: 1
+    - path: evaluate_model.py
+      md5: e0d20f62c2789e4c2ed9295fb2494513
+      size: 1242
+    outs:
+    - path: ./assets/pipeline/metrics/
+      md5: 3b432d68dae67fef73d77958840d5e1f.dir
+      size: 310
+      nfiles: 1

@@ -7,7 +7,7 @@ load:
 
 
 featurize:
-  source: './assets/pipeline/original_dataset/car_eval_raw.csv'
+  source: './assets/pipeline/data/car_eval.csv'
   to: './assets/pipeline/features/'
   test_size: 0.2
   random_seed: 42
