@@ -56,7 +56,6 @@ stages:
       md5: e0d20f62c2789e4c2ed9295fb2494513
       size: 1242
     outs:
-    - path: ./assets/pipeline/metrics/
-      md5: 3b432d68dae67fef73d77958840d5e1f.dir
+    - path: ./assets/pipeline/metrics/metrics.json
+      md5: 89d06aeff168f726c41834ff896de291
       size: 310
-      nfiles: 1

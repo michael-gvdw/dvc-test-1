@@ -25,5 +25,6 @@ stages:
     - ./assets/pipeline/features/
     - ./assets/pipeline/models/
     - evaluate_model.py
-    outs:
-    - ./assets/pipeline/metrics/
+    metrics:
+    - ./assets/pipeline/metrics/metrics.json:
+        cache: false
