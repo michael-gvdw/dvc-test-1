@@ -1,21 +1,21 @@
 load:
   source: 'https://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data'
-  to: './assets/original_dataset/car_eval_raw.csv'
+  to: './assets/pipeline/original_dataset/car_eval_raw.csv'
   header: null
   column_names: ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class/state']
   classes: ['unacc', 'acc', 'good', 'vgood']
 
 
 featurize:
-  source: './assets/original_dataset/car_eval_raw.csv'
-  to: './assets/features/'
+  source: './assets/pipeline/original_dataset/car_eval_raw.csv'
+  to: './assets/pipeline/features/'
   test_size: 0.2
   random_seed: 42
 
 
 train:
-  source: './assets/features/'
-  to: './assets/models/'
+  source: './assets/pipeline/features/'
+  to: './assets/pipeline/models/'
   tree:
     criterion: 'entropy'
     splitter: 'random'
@@ -31,7 +31,7 @@ train:
 
 
 evaluate:
-  source: './assets/models/model.pickle'
-  to: './assets/metrics/metrics.json'
+  source: './assets/pipeline/models/model.pickle'
+  to: './assets/pipeline/metrics/metrics.json'
   average: None
   

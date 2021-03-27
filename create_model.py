@@ -1,3 +1,4 @@
+import os
 import yaml
 import pickle
 
@@ -5,6 +6,9 @@ import numpy as np
 import pandas as pd
 
 from sklearn.tree import DecisionTreeClassifier
+
+# create directories if not existing
+os.makedirs('./assets/pipeline/models/', exist_ok=True)
 
 params = yaml.safe_load(open('params.yaml'))['train']
 

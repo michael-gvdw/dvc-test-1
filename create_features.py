@@ -1,3 +1,4 @@
+import os
 import yaml
 
 import numpy as np
@@ -5,6 +6,10 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+
+# create directories if not existing
+os.makedirs('./assets/pipeline/features/', exist_ok=True)
+
 
 params = yaml.safe_load(open('params.yaml'))['featurize']
 
@@ -20,7 +25,7 @@ for column, _ in df.iteritems():
 print(df.head())
 
 # save encoded values
-df.to_csv(params['source'], index=False, mode='w')
+df.to_csv('./assets/pipeline/data/car_eval_encoded.csv', index=False, mode='w')
 
 
 # split features and labels
