@@ -5,7 +5,8 @@ import pickle
 import numpy as np
 import pandas as pd
 
-from sklearn.tree import DecisionTreeClassifier
+# from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
 
 # create directories if not existing
 os.makedirs('./assets/pipeline/models/', exist_ok=True)
@@ -19,10 +20,16 @@ X_test = np.array(pd.read_csv(f'{params["source"]}X_test.csv'))
 y_test = np.array(pd.read_csv(f'{params["source"]}y_test.csv'))
 
 
-clf = DecisionTreeClassifier(criterion=params['tree']['criterion'], 
-                            splitter=params['tree']['splitter'], 
-                            max_depth=params['tree']['max_depth'], 
-                            max_features=params['tree']['max_features'])
+# clf = DecisionTreeClassifier(criterion=params['tree']['criterion'], 
+#                             splitter=params['tree']['splitter'], 
+#                             max_depth=params['tree']['max_depth'], 
+#                             max_features=params['tree']['max_features'])
+
+clf = SVC(kernel=params['svc']['kernel'], 
+        C=params['svc']['C'], 
+        gamma=params['svc']['gamma'], 
+        degree=params['svc']['degree'])
+
 clf.fit(X_train, y_train)
 
 print(clf.score(X_test, y_test))

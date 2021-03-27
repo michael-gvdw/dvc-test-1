@@ -21,13 +21,11 @@ train:
     splitter: 'random'
     max_depth: 10
     max_features: 'sqrt'
-    file_name: 'DecisionTreeClassifier.pickle'
   svc:
     kernel: 'rbf'
-    c: 7
+    C: 7
     gamma: 'auto'
     degree: 5
-    file_name: 'SVC.pickle'
 
 
 evaluate:

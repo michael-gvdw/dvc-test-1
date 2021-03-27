@@ -34,12 +34,12 @@ stages:
       size: 27762
       nfiles: 4
     - path: create_model.py
-      md5: 559caec4a2ceabad6dad6c363598a94b
-      size: 943
+      md5: a4abec325a8f7a6f59a92f7c1aeeba82
+      size: 1136
     outs:
     - path: ./assets/pipeline/models/
-      md5: 6916f619f92583a44043de2c0f7328d8.dir
-      size: 53458
+      md5: c6bdfce9b13742502e31fe016b001c5f.dir
+      size: 36723
       nfiles: 1
   evaluate:
     cmd: python evaluate_model.py
@@ -49,13 +49,13 @@ stages:
       size: 27762
       nfiles: 4
     - path: ./assets/pipeline/models/
-      md5: 6916f619f92583a44043de2c0f7328d8.dir
-      size: 53458
+      md5: c6bdfce9b13742502e31fe016b001c5f.dir
+      size: 36723
       nfiles: 1
     - path: evaluate_model.py
-      md5: e0d20f62c2789e4c2ed9295fb2494513
-      size: 1242
+      md5: 045ed29f116040c1b4466845859d7ad0
+      size: 1647
     outs:
     - path: ./assets/pipeline/metrics/metrics.json
-      md5: 89d06aeff168f726c41834ff896de291
-      size: 310
+      md5: be35773c1ef0d6b9f626e38f1dc1a86f
+      size: 414
