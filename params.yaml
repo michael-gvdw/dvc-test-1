@@ -1,27 +1,37 @@
 load:
   source: 'https://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data'
-  header: None
+  to: './assets/original_dataset/car_eval_raw.csv'
+  header: null
   column_names: ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class/state']
   classes: ['unacc', 'acc', 'good', 'vgood']
 
 
-prepare:
+featurize:
+  source: './assets/original_dataset/car_eval_raw.csv'
+  to: './assets/features/'
   test_size: 0.2
+  random_seed: 42
 
 
 train:
+  source: './assets/features/'
+  to: './assets/models/'
   tree:
     criterion: 'entropy'
     splitter: 'random'
     max_depth: 10
     max_features: 'sqrt'
+    file_name: 'DecisionTreeClassifier.pickle'
   svc:
     kernel: 'rbf'
     c: 7
     gamma: 'auto'
     degree: 5
+    file_name: 'SVC.pickle'
 
 
 evaluate:
+  source: './assets/models/model.pickle'
+  to: './assets/metrics/metrics.json'
   average: None
   

@@ -1,0 +1,4 @@
+outs:
+- md5: c2a837234b52c19272afae64dcd51256
+  size: 43250
+  path: DecisionTreeClassifier.pickle

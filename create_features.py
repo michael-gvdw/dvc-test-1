@@ -1,11 +1,15 @@
+import yaml
+
 import numpy as np
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
+params = yaml.safe_load(open('params.yaml'))['featurize']
+
 # load in raw dataset from local dir
-df = pd.read_csv('./assets/original_dataset/car_eval_raw.csv')
+df = pd.read_csv(params['source'])
 column_names = list(df.columns)
 
 
@@ -16,7 +20,7 @@ for column, _ in df.iteritems():
 print(df.head())
 
 # save encoded values
-df.to_csv('./assets/data/car_eval_encoded.csv', index=False, mode='w')
+df.to_csv(params['source'], index=False, mode='w')
 
 
 # split features and labels
@@ -24,7 +28,7 @@ y = np.array(df.pop('class/state'))
 X = np.array(df)
 
 # split into train and test sub datasets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=params['test_size'], random_state=params['random_seed'])
 
 print(f'features: {column_names[:-1]}')
 print(f'label: {column_names[-1]}')
@@ -38,8 +42,8 @@ y_test_df = pd.DataFrame(y_test, columns=[column_names[-1]])
 
 
 # save features and labels
-X_train_df.to_csv('./assets/features/X_train.csv', index=False, mode='w')
-X_test_df.to_csv('./assets/features/X_test.csv', index=False, mode='w')
+X_train_df.to_csv(f'{params["to"]}X_train.csv', index=False, mode='w')
+X_test_df.to_csv(f'{params["to"]}X_test.csv', index=False, mode='w')
 
-y_train_df.to_csv('./assets/features/y_train.csv', index=False, mode='w')
-y_test_df.to_csv('./assets/features/y_test.csv', index=False, mode='w')
+y_train_df.to_csv(f'{params["to"]}y_train.csv', index=False, mode='w')
+y_test_df.to_csv(f'{params["to"]}y_test.csv', index=False, mode='w')

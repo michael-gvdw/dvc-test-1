@@ -1,3 +1,4 @@
+import yaml
 import pickle
 
 import numpy as np
@@ -5,20 +6,24 @@ import pandas as pd
 
 from sklearn.tree import DecisionTreeClassifier
 
+params = yaml.safe_load(open('params.yaml'))['train']
 
-X_train = np.array(pd.read_csv('./assets/features/X_train.csv'))
-y_train = np.array(pd.read_csv('./assets/features/y_train.csv'))
+X_train = np.array(pd.read_csv(f'{params["source"]}X_train.csv'))
+y_train = np.array(pd.read_csv(f'{params["source"]}y_train.csv'))
 
-X_test = np.array(pd.read_csv('./assets/features/X_test.csv'))
-y_test = np.array(pd.read_csv('./assets/features/y_test.csv'))
+X_test = np.array(pd.read_csv(f'{params["source"]}X_test.csv'))
+y_test = np.array(pd.read_csv(f'{params["source"]}y_test.csv'))
 
 
-clf = DecisionTreeClassifier(criterion='entropy', splitter='random', max_depth=10, max_features='sqrt')
+clf = DecisionTreeClassifier(criterion=params['tree']['criterion'], 
+                            splitter=params['tree']['splitter'], 
+                            max_depth=params['tree']['max_depth'], 
+                            max_features=params['tree']['max_features'])
 clf.fit(X_train, y_train)
 
 print(clf.score(X_test, y_test))
 
-pickle.dump(clf, open('./assets/models/model.pickle', mode='wb'))
+pickle.dump(clf, open(f'{params["to"]}{params["tree"]["file_name"]}', mode='wb'))
 
 
 
