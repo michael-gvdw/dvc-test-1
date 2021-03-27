@@ -1,0 +1,27 @@
+load:
+  source: 'https://archive.ics.uci.edu/ml/machine-learning-databases/car/car.data'
+  header: None
+  column_names: ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class/state']
+  classes: ['unacc', 'acc', 'good', 'vgood']
+
+
+prepare:
+  test_size: 0.2
+
+
+train:
+  tree:
+    criterion: 'entropy'
+    splitter: 'random'
+    max_depth: 10
+    max_features: 'sqrt'
+  svc:
+    kernel: 'rbf'
+    c: 7
+    gamma: 'auto'
+    degree: 5
+
+
+evaluate:
+  average: None
+  
